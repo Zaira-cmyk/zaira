@@ -1,124 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website Recommendation System</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Client Website Recommendations</h1>
-        <p>Professional Website Recommendation Dashboard</p>
+        <nav>
+            <h1 class="logo">My Portfolio</h1>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h2>Hello, I'm Zaira</h2>
+            <p>Aspiring Web Developer and Designer</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
 
-        <!-- Add Recommendation Form -->
-        <section class="form-section">
-            <h2>Add Recommendation</h2>
+    <!-- About -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
 
-            <form id="recommendationForm">
-                <input type="text" id="title" placeholder="Website Title" required />
+        <p>
+            I am a passionate student who enjoys creating responsive and user-friendly websites using HTML, CSS, and AI tools. I love learning new technologies and improving my web development skills.
+        </p>
+    </section>
 
-                <textarea id="description" placeholder="Website Description" required></textarea>
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <h2>Skills</h2>
 
-                <input type="url" id="link" placeholder="Website Link" required />
+        <div class="skills-container">
+            <div class="skill-card">HTML</div>
+            <div class="skill-card">CSS</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">Responsive Design</div>
+            <div class="skill-card">GitHub</div>
+            <div class="skill-card">AI Tools</div>
+        </div>
+    </section>
 
-                <button type="submit">Add Recommendation</button>
-            </form>
-        </section>
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <h2>Projects</h2>
 
-        <!-- Recommendation List -->
-        <section class="recommendation-section">
-            <h2>Recommendations</h2>
+        <div class="projects-container">
 
-            <div id="recommendationList" class="recommendation-list">
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
 
-                <!-- Recommendation Card -->
-                <div class="card">
-                    <h3>Portfolio Website</h3>
-
-                    <p>
-                        A modern responsive portfolio website made using HTML and CSS.
-                    </p>
-
-                    <a href="#" target="_blank">Visit Website</a>
-
-                    <div class="buttons">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </div>
-                </div>
-
+                <p>
+                    A responsive personal portfolio website using HTML and CSS.
+                </p>
             </div>
-        </section>
 
-    </main>
+            <div class="project-card">
+                <h3>Library Management System</h3>
 
+                <p>
+                    A student and librarian system project with a dashboard and API integration.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <h3>Authentication CRUD System</h3>
+
+                <p>
+                    A Laravel-based CRUD system with login and registration features.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section id="recommendations" class="section">
+        <h2>Recommendations</h2>
+
+        <div class="recommendation-form">
+
+            <input type="text" id="name" placeholder="Enter recommendation title">
+
+            <textarea id="message" placeholder="Enter recommendation message"></textarea>
+
+            <button onclick="addRecommendation()">Add Recommendation</button>
+
+        </div>
+
+        <div id="recommendation-list" class="recommendation-list">
+
+            <div class="recommendation-card">
+                <h3>Great Portfolio</h3>
+
+                <p>
+                    This website is responsive and professionally designed.
+                </p>
+
+                <div class="card-buttons">
+                    <button class="edit-btn" onclick="editRecommendation(this)">Edit</button>
+
+                    <button class="delete-btn" onclick="deleteRecommendation(this)">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+
+        <p>Email: zaira@example.com</p>
+        <p>GitHub: github.com/yourusername</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Portfolio | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        const form = document.getElementById("recommendationForm");
-        const recommendationList = document.getElementById("recommendationList");
-
         let editCard = null;
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+        function addRecommendation() {
 
-            const title = document.getElementById("title").value;
-            const description = document.getElementById("description").value;
-            const link = document.getElementById("link").value;
+            const name = document.getElementById("name").value;
+            const message = document.getElementById("message").value;
 
-            if (editCard) {
-                editCard.querySelector("h3").textContent = title;
-                editCard.querySelector("p").textContent = description;
-                editCard.querySelector("a").href = link;
-
-                editCard = null;
-            } else {
-                addRecommendation(title, description, link);
+            if(name === "" || message === "") {
+                alert("Please fill in all fields.");
+                return;
             }
 
-            form.reset();
-        });
+            if(editCard) {
 
-        function addRecommendation(title, description, link) {
-            const card = document.createElement("div");
-            card.classList.add("card");
+                editCard.querySelector("h3").innerText = name;
+                editCard.querySelector("p").innerText = message;
 
-            card.innerHTML = `
-                <h3>${title}</h3>
-                <p>${description}</p>
-                <a href="${link}" target="_blank">Visit Website</a>
+                editCard = null;
 
-                <div class="buttons">
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </div>
-            `;
+            } else {
 
-            recommendationList.appendChild(card);
+                const card = document.createElement("div");
+                card.classList.add("recommendation-card");
 
-            const editBtn = card.querySelector(".edit-btn");
-            const deleteBtn = card.querySelector(".delete-btn");
+                card.innerHTML = `
+                    <h3>${name}</h3>
+                    <p>${message}</p>
 
-            editBtn.addEventListener("click", function () {
-                document.getElementById("title").value =
-                    card.querySelector("h3").textContent;
+                    <div class="card-buttons">
+                        <button class="edit-btn" onclick="editRecommendation(this)">Edit</button>
 
-                document.getElementById("description").value =
-                    card.querySelector("p").textContent;
+                        <button class="delete-btn" onclick="deleteRecommendation(this)">Delete</button>
+                    </div>
+                `;
 
-                document.getElementById("link").value =
-                    card.querySelector("a").href;
+                document.getElementById("recommendation-list").appendChild(card);
+            }
 
-                editCard = card;
-            });
+            document.getElementById("name").value = "";
+            document.getElementById("message").value = "";
+        }
 
-            deleteBtn.addEventListener("click", function () {
-                card.remove();
-            });
+        function editRecommendation(button) {
+
+            const card = button.parentElement.parentElement;
+
+            const title = card.querySelector("h3").innerText;
+            const text = card.querySelector("p").innerText;
+
+            document.getElementById("name").value = title;
+            document.getElementById("message").value = text;
+
+            editCard = card;
+        }
+
+        function deleteRecommendation(button) {
+            button.parentElement.parentElement.remove();
         }
     </script>
 
