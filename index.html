@@ -11,19 +11,16 @@
     <header>
         <nav>
             <h1 class="logo">My Portfolio</h1>
-
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#recommendations">Recommendations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-text">
             <h2>Hello, I'm Zaira</h2>
@@ -32,19 +29,15 @@
         </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="section">
         <h2>About Me</h2>
-
         <p>
             I am a passionate student who enjoys creating responsive and user-friendly websites using HTML, CSS, and AI tools. I love learning new technologies and improving my web development skills.
         </p>
     </section>
 
-    <!-- Skills -->
     <section id="skills" class="section">
         <h2>Skills</h2>
-
         <div class="skills-container">
             <div class="skill-card">HTML</div>
             <div class="skill-card">CSS</div>
@@ -55,146 +48,35 @@
         </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects" class="section">
         <h2>Projects</h2>
-
         <div class="projects-container">
-
             <div class="project-card">
                 <h3>Portfolio Website</h3>
-
-                <p>
-                    A responsive personal portfolio website using HTML and CSS.
-                </p>
+                <p>A responsive personal portfolio website using HTML and CSS.</p>
             </div>
 
             <div class="project-card">
                 <h3>Library Management System</h3>
-
-                <p>
-                    A student and librarian system project with a dashboard and API integration.
-                </p>
+                <p>A student and librarian system project with a dashboard and API integration.</p>
             </div>
 
             <div class="project-card">
                 <h3>Authentication CRUD System</h3>
-
-                <p>
-                    A Laravel-based CRUD system with login and registration features.
-                </p>
+                <p>A Laravel-based CRUD system with login and registration features.</p>
             </div>
-
         </div>
-    </section>
+            </section>
 
-    <!-- Recommendations -->
-    <section id="recommendations" class="section">
-        <h2>Recommendations</h2>
-
-        <div class="recommendation-form">
-
-            <input type="text" id="name" placeholder="Enter recommendation title">
-
-            <textarea id="message" placeholder="Enter recommendation message"></textarea>
-
-            <button onclick="addRecommendation()">Add Recommendation</button>
-
-        </div>
-
-        <div id="recommendation-list" class="recommendation-list">
-
-            <div class="recommendation-card">
-                <h3>Great Portfolio</h3>
-
-                <p>
-                    This website is responsive and professionally designed.
-                </p>
-
-                <div class="card-buttons">
-                    <button class="edit-btn" onclick="editRecommendation(this)">Edit</button>
-
-                    <button class="delete-btn" onclick="deleteRecommendation(this)">Delete</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Contact -->
     <section id="contact" class="section">
         <h2>Contact Me</h2>
-
         <p>Email: zaira@example.com</p>
         <p>GitHub: github.com/yourusername</p>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 My Portfolio | All Rights Reserved</p>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        let editCard = null;
-
-        function addRecommendation() {
-
-            const name = document.getElementById("name").value;
-            const message = document.getElementById("message").value;
-
-            if(name === "" || message === "") {
-                alert("Please fill in all fields.");
-                return;
-            }
-
-            if(editCard) {
-
-                editCard.querySelector("h3").innerText = name;
-                editCard.querySelector("p").innerText = message;
-
-                editCard = null;
-
-            } else {
-
-                const card = document.createElement("div");
-                card.classList.add("recommendation-card");
-
-                card.innerHTML = `
-                    <h3>${name}</h3>
-                    <p>${message}</p>
-
-                    <div class="card-buttons">
-                        <button class="edit-btn" onclick="editRecommendation(this)">Edit</button>
-
-                        <button class="delete-btn" onclick="deleteRecommendation(this)">Delete</button>
-                    </div>
-                `;
-
-                document.getElementById("recommendation-list").appendChild(card);
-            }
-
-            document.getElementById("name").value = "";
-            document.getElementById("message").value = "";
-        }
-
-        function editRecommendation(button) {
-
-            const card = button.parentElement.parentElement;
-
-            const title = card.querySelector("h3").innerText;
-            const text = card.querySelector("p").innerText;
-
-            document.getElementById("name").value = title;
-            document.getElementById("message").value = text;
-
-            editCard = card;
-        }
-
-        function deleteRecommendation(button) {
-            button.parentElement.parentElement.remove();
-        }
-    </script>
 
 </body>
 </html>
